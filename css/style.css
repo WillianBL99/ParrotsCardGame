@@ -33,18 +33,57 @@ main {
     background-color: green;
 }
 
-main > div {
-    display: flex;
+.card {
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    
-    min-width: 117px;
-    min-height: 146px;
+     */
+    /* min-width: 117px;
+    min-height: 146px; */
+    width: 117px;
+    height: 146px;
 
     margin: 17px 17px;    
+    
+    position: relative;    
+    
+    /* background-color: #A7E9AF; */
+}
 
+.face {
+    width: 100%;
+    height: 100%;
     background-color: #A7E9AF;
-
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
     border-radius: 5px;
-    border: 1px solid #A7E9AF;
+    border: 2px solid #99CEA8;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back {
+    transform: rotateY(0deg);
+}
+
+.card:hover .front {
+    transform: rotateY(-180deg);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.hide {
 }
