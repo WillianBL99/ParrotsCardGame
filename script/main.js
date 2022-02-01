@@ -1,12 +1,29 @@
 window.onload = function(){
-    addCard();
+    makeGame(14);
+}
+
+const appElement = document.querySelector("main");
+const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"];
+
+function makeGame(num){
+    images.sort(comparador);
+    auxImages = [];
+
+    for(i = 0; i < num/2; i++){
+        auxImages.push(images[i]);
+        auxImages.push(images[i]);
+    }
+
+    auxImages.sort(comparador).sort(comparador);
+    auxImages.forEach( img => appElement.appendChild(addCard(img)));
 }
 
 
-const appElement = document.querySelector("main");
-let item;
 
-function addCard(){
+
+
+/* Cria uma carta com o gif do fundo passado pelo parametro 'gif' */
+function addCard(gif){
     // -- criando elementos --
     const divCard = document.createElement("div");
     divCard.setAttribute('class', 'card');
@@ -22,7 +39,7 @@ function addCard(){
 
     // -- interligando elementos
     imgParrot.setAttribute('src', './img/front.png');
-    gifParrot.setAttribute('src', './img/tripletsparrot.gif');
+    gifParrot.setAttribute('src', `./img/${gif}parrot.gif`);
 
     front.appendChild(imgParrot);
     back.appendChild(gifParrot);
@@ -30,5 +47,22 @@ function addCard(){
     divCard.appendChild(front);
     divCard.appendChild(back);
 
-    appElement.appendChild(divCard);
+    return divCard;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function comparador() { 
+	return Math.random() - 0.5; 
 }

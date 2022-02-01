@@ -20,7 +20,7 @@ header {
     color: #75B79E;    
 }
 
-head>p {
+header>p {
     text-align: center;
 }
 
@@ -30,7 +30,6 @@ main {
     justify-content: center;
 
     padding: 0 100px;
-    background-color: green;
 }
 
 .card {
@@ -38,8 +37,8 @@ main {
     justify-content: center;
     align-items: center;
      */
-    /* min-width: 117px;
-    min-height: 146px; */
+    min-width: 117px;
+    min-height: 146px;
     width: 117px;
     height: 146px;
 
@@ -61,8 +60,10 @@ main {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
+
     transition: all .5s;
     transform-style: preserve-3d;
+
     border-radius: 5px;
     border: 2px solid #99CEA8;
 }
@@ -83,7 +84,4 @@ main {
     width: 100px;
     height: 100px;
     object-fit: cover;
-}
-
-.hide {
 }
