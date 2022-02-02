@@ -55,7 +55,6 @@ function addCard(gif){
     // finaliza a montagem da carta
     front.appendChild(imgParrot);
     back.appendChild(gifParrot);
-
     divCard.appendChild(front);
     divCard.appendChild(back);
 
@@ -87,12 +86,17 @@ function isPair(pairNumber){
 
 
 /*  -- Implementação das função do jogo -- */
+// Contador de vezes que uma carta foi virada
+let counter = 0;
 
 function cardSelect(cardClicked){
     const card = cardClicked;
     const frontCard = card.querySelector('.front');
     const backCard = card.querySelector('.back');
-    frontCard.classList.toggle('frontClicked');
-    backCard.classList.toggle('backClicked');
 
+    if(frontCard.classList.contains('frontClicked')){        
+        frontCard.classList.add('frontClicked');
+        backCard.classList.add('backClicked');
+        counter++;
+    }
 }
