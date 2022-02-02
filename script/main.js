@@ -1,11 +1,12 @@
 window.onload = function(){
-    makeGame(14);
+    buildGame(checkNumber());
 }
+
 
 const appElement = document.querySelector("main");
 const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"];
 
-function makeGame(num){
+function buildGame(num){
     images.sort(comparador);
     auxImages = [];
 
@@ -52,17 +53,18 @@ function addCard(gif){
 
 
 
+// Repete até o usuário inserir um número par entre 4 e 14
+function checkNumber(){
+    let pairNumber;
 
+    do {
+        pairNumber = parseInt(prompt('Com quantas cartas você quer jogar?'))
+        if(pairNumber < 4 || pairNumber > 14 || pairNumber%2 !== 0) alert('Insira um número par entre 4 e 14, inclusive.');
+    } while(pairNumber < 4 || pairNumber > 14 || pairNumber%2 !== 0);
+    return pairNumber;
+}
 
-
-
-
-
-
-
-
-
-
+// Embaralhar array a partir do sort()
 function comparador() { 
 	return Math.random() - 0.5; 
 }
