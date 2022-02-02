@@ -72,11 +72,11 @@ main {
     transform: rotateY(180deg);
 }
 
-.card:hover .back {
+.backClicked {
     transform: rotateY(0deg);
 }
 
-.card:hover .front {
+.frontClicked {
     transform: rotateY(-180deg);
 }
 

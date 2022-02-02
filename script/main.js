@@ -26,8 +26,10 @@ function buildGame(num){
     auxImages.forEach( img => appElement.appendChild(addCard(img)));
 }
 
-
-
+// Embaralhar array a partir do sort()
+function comparador() { 
+	return Math.random() - 0.5; 
+}
 
 
 /* Cria uma carta com o gif do fundo passado pelo parametro 'gif' */
@@ -35,6 +37,7 @@ function addCard(gif){
     // cria a div principal da carta
     const divCard = document.createElement("div");
     divCard.setAttribute('class', 'card');
+    divCard.setAttribute('onclick', 'cardSelect(this)');
     // cria a parte frontal da carta
     const front = document.createElement("div");
     front.setAttribute('class', 'face front');
@@ -43,7 +46,7 @@ function addCard(gif){
     back.setAttribute('class', 'face back');
 
     const imgParrot = document.createElement("img");
-    const gifParrot = document.createElement("img")
+    const gifParrot = document.createElement("img");
 
     // Insere as imagens no front e no back da carta
     imgParrot.setAttribute('src', './img/front.png');
@@ -61,11 +64,10 @@ function addCard(gif){
 }
 
 
-
 // Repete até o usuário inserir um número par entre 4 e 14
 function checkNumber(){
     let PairNumber;
-
+    // repete até o retorno do prompet for par e estiver entre 3 e 15
     while(true){
         pairNumber = parseInt(prompt('Com quantas cartas você quer jogar?'));
         if(isPair(pairNumber)) break;
@@ -74,6 +76,7 @@ function checkNumber(){
     return pairNumber;
 }
 
+// verifica se o número é par e está entre 3 e 15;
 function isPair(pairNumber){
     if(pairNumber < 4 || pairNumber > 14 || pairNumber%2 !== 0){        
         alert('Insira um número par entre 4 e 14, inclusive.');
@@ -82,7 +85,14 @@ function isPair(pairNumber){
     return true;
 }
 
-// Embaralhar array a partir do sort()
-function comparador() { 
-	return Math.random() - 0.5; 
+
+/*  -- Implementação das função do jogo -- */
+
+function cardSelect(cardClicked){
+    const card = cardClicked;
+    const frontCard = card.querySelector('.front');
+    const backCard = card.querySelector('.back');
+    frontCard.classList.toggle('frontClicked');
+    backCard.classList.toggle('backClicked');
+
 }
