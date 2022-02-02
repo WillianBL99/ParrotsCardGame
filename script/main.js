@@ -1,7 +1,15 @@
 window.onload = function(){
+    
     // monta as cartas com a quantidade passada pelo usuário em 'checkNumber()'
-    buildGame(checkNumber());
+    numberOfCards = checkNumber();
+    buildGame(numberOfCards);
 }
+
+let numberOfCards = 0;
+let pairOfCards = 0;
+// Contador de tentativas
+let counter = 0;
+let beforParrot = {card: '', id: '' };
 
 // Pega o conteiner onde ficarão as cartas
 const appElement = document.querySelector("main");
@@ -87,9 +95,6 @@ function isPair(pairNumber){
 
 
 /*  -- Implementação das função do jogo -- */
-// Contador de vezes que uma carta foi virada
-let counter = 0;
-let beforParrot = {card: '', id: '' };
 
 function cardSelect(cardClicked, cardId){
     const card = cardClicked;
@@ -111,6 +116,7 @@ function cardSelect(cardClicked, cardId){
         else if(beforParrot['id'] === cardId){
             beforParrot['card'] = '';
             beforParrot['id'] = '';
+            pairOfCards++;
         } 
         else {   
             frontCard.classList.remove('frontClicked');
@@ -122,5 +128,9 @@ function cardSelect(cardClicked, cardId){
             beforParrot['card'] = '';
             beforParrot['id'] = '';        
         }
+    }
+
+    if(numberOfCards/2 === pairOfCards){
+        alert(`Você ganhou em ${counter} jogadas!`);
     }
 }
