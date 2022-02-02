@@ -36,15 +36,16 @@ function comparador() {
 function addCard(gif){
     // cria a div principal da carta
     const divCard = document.createElement("div");
+    divCard.setAttribute('id',`${gif}`);
     divCard.setAttribute('class', 'card');
-    divCard.setAttribute('onclick', 'cardSelect(this)');
+    divCard.setAttribute('onclick', 'cardSelect(this, this.id)');
     // cria a parte frontal da carta
     const front = document.createElement("div");
     front.setAttribute('class', 'face front');
     // cria a parte de trás da carta
     const back = document.createElement("div");
     back.setAttribute('class', 'face back');
-
+    
     const imgParrot = document.createElement("img");
     const gifParrot = document.createElement("img");
 
@@ -88,15 +89,38 @@ function isPair(pairNumber){
 /*  -- Implementação das função do jogo -- */
 // Contador de vezes que uma carta foi virada
 let counter = 0;
+let beforParrot = {card: '', id: '' };
 
-function cardSelect(cardClicked){
+function cardSelect(cardClicked, cardId){
     const card = cardClicked;
-    const frontCard = card.querySelector('.front');
-    const backCard = card.querySelector('.back');
+    let frontCard = card.querySelector('.front');
+    let backCard = card.querySelector('.back');
 
-    if(frontCard.classList.contains('frontClicked')){        
+    
+    if(!frontCard.classList.contains('frontClicked')){     
         frontCard.classList.add('frontClicked');
         backCard.classList.add('backClicked');
+        
         counter++;
+
+        if(beforParrot['card'] === ''){
+            beforParrot['card'] = card;
+            beforParrot['id'] = cardId;
+
+        }
+        else if(beforParrot['id'] === cardId){
+            beforParrot['card'] = '';
+            beforParrot['id'] = '';
+        } 
+        else {   
+            frontCard.classList.remove('frontClicked');
+            backCard.classList.remove('backClicked');            
+            frontCard = beforParrot['card'].querySelector('.front');
+            backCard = beforParrot['card'].querySelector('.back');
+            frontCard.classList.remove('frontClicked');
+            backCard.classList.remove('backClicked');    
+            beforParrot['card'] = '';
+            beforParrot['id'] = '';        
+        }
     }
 }
