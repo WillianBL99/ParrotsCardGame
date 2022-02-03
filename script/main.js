@@ -3,19 +3,28 @@ window.onload = function(){
     // monta as cartas com a quantidade passada pelo usuário em 'checkNumber()'
     numberOfCards = checkNumber();
     buildGame(numberOfCards);
+    intervalTimer = setInterval(clock, 1000);
 }
 
+let intervalTimer = 0;
 let numberOfCards = 0;
 let pairOfCards = 0;
 // Contador de tentativas
 let counter = 0;
 let beforParrot = {card: '', id: '' };
 let seeCard = true;
+let timer = 0;
 
+
+const elementClock = document.querySelector('.clock span');
 // Pega o conteiner onde ficarão as cartas
-const appElement = document.querySelector("main");
+const appElement = document.querySelector(".deck_cards");
 // cria o vertor com os nomes das imagens disponíveis
 const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"];
+
+function clock(){
+    elementClock.innerHTML = ++timer;
+}
 
 // monta as cartas na tela
 function buildGame(num){

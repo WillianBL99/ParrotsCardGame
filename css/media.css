@@ -1,5 +1,12 @@
 @media (max-width: 395px) {
     header {
         font-size: 36px;
+        height: 150px;
     }
+}
+
+@media (max-width: 250px) {
+    header {
+        height: 168px;
+    }    
 }

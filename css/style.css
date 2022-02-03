@@ -6,7 +6,9 @@ body {
     background-color: #EEF9BF;
     min-width: 210px;
 
-    padding: 4px 0;
+    padding: 0 5px;
+
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -16,21 +18,36 @@ header {
     height: 133px;
 
     font-family: 'Roboto', sans-serif;
-    font-size: 56px;
-    font-weight: bold;
-
+    
     color: #75B79E;    
 }
 
 header>p {
     text-align: center;
+    font-weight: bold;
+    font-size: 56px;
 }
 
-main {
+main .clock {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    min-height: 40px;
+}
+
+.clock span {
+    font-size: 30px;
+    padding-right: 3px;
+
+    color: #ca1515;
+}
+
+main .deck_cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
+    
     padding: 0 100px;
 }
 
