@@ -4,6 +4,9 @@
 
 body {
     background-color: #EEF9BF;
+    min-width: 210px;
+
+    padding: 4px 0;
 }
 
 header {
@@ -12,7 +15,6 @@ header {
     align-items: center;
     height: 133px;
 
-    font-family: 'Righteous', cursive;
     font-family: 'Roboto', sans-serif;
     font-size: 56px;
     font-weight: bold;
