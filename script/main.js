@@ -103,8 +103,11 @@ function cardSelect(cardClicked, cardId){
 
     
     if(!frontCard.classList.contains('frontClicked')){     
+        clearTimeout();
+        
         frontCard.classList.add('frontClicked');
         backCard.classList.add('backClicked');
+
         
         counter++;
 
@@ -119,18 +122,24 @@ function cardSelect(cardClicked, cardId){
             pairOfCards++;
         } 
         else {   
-            frontCard.classList.remove('frontClicked');
-            backCard.classList.remove('backClicked');            
-            frontCard = beforParrot['card'].querySelector('.front');
-            backCard = beforParrot['card'].querySelector('.back');
-            frontCard.classList.remove('frontClicked');
-            backCard.classList.remove('backClicked');    
-            beforParrot['card'] = '';
-            beforParrot['id'] = '';        
+            setTimeout(() => {
+                frontCard.classList.remove('frontClicked');
+                backCard.classList.remove('backClicked');            
+                frontCard = beforParrot['card'].querySelector('.front');
+                backCard = beforParrot['card'].querySelector('.back');
+                frontCard.classList.remove('frontClicked');
+                backCard.classList.remove('backClicked');    
+                beforParrot['card'] = '';
+                beforParrot['id'] = ''; 
+            }, 1000);     
         }
     }
 
     if(numberOfCards/2 === pairOfCards){
-        alert(`Você ganhou em ${counter} jogadas!`);
+        setTimeout(isWin, 1000);
     }
+}
+
+function isWin(){
+    alert(`Você ganhou em ${counter} jogadas!`);
 }
