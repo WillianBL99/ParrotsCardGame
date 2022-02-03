@@ -10,6 +10,7 @@ let pairOfCards = 0;
 // Contador de tentativas
 let counter = 0;
 let beforParrot = {card: '', id: '' };
+let seeCard = true;
 
 // Pega o conteiner onde ficarão as cartas
 const appElement = document.querySelector("main");
@@ -102,7 +103,7 @@ function cardSelect(cardClicked, cardId){
     let backCard = card.querySelector('.back');
 
     
-    if(!frontCard.classList.contains('frontClicked')){     
+    if(!frontCard.classList.contains('frontClicked') && seeCard){     
         clearTimeout();
         
         frontCard.classList.add('frontClicked');
@@ -122,6 +123,7 @@ function cardSelect(cardClicked, cardId){
             pairOfCards++;
         } 
         else {   
+            seeCard = false;
             setTimeout(() => {
                 frontCard.classList.remove('frontClicked');
                 backCard.classList.remove('backClicked');            
@@ -131,6 +133,7 @@ function cardSelect(cardClicked, cardId){
                 backCard.classList.remove('backClicked');    
                 beforParrot['card'] = '';
                 beforParrot['id'] = ''; 
+                seeCard = true;
             }, 1000);     
         }
     }
