@@ -6,7 +6,7 @@ window.onload = function(){
     intervalTimer = setInterval(clock, 1000);
 }
 
-let intervalTimer = 0;
+let intervalTimer;
 let numberOfCards = 0;
 let pairOfCards = 0;
 // Contador de tentativas
@@ -148,10 +148,9 @@ function cardSelect(cardClicked, cardId){
     }
 
     if(numberOfCards/2 === pairOfCards){
-        setTimeout(isWin, 1000);
+        clearInterval(intervalTimer);
+        setTimeout(() => {
+            alert(`Você ganhou em ${counter} jogadas e em ${timer} segundos!`);
+        }, 1000);
     }
-}
-
-function isWin(){
-    alert(`Você ganhou em ${counter} jogadas!`);
 }
