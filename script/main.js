@@ -1,9 +1,5 @@
 window.onload = function(){
-    
-    // monta as cartas com a quantidade passada pelo usuário em 'checkNumber()'
-    numberOfCards = checkNumber();
-    buildGame(numberOfCards);
-    intervalTimer = setInterval(clock, 1000);
+    startGame();
 }
 
 let intervalTimer;
@@ -16,14 +12,23 @@ let seeCard = true;
 let timer = 0;
 
 
-const elementClock = document.querySelector('.clock span');
+const clockElement = document.querySelector('.clock span');
 // Pega o conteiner onde ficarão as cartas
-const appElement = document.querySelector(".deck_cards");
+const deckElement = document.querySelector(".deck_cards");
 // cria o vertor com os nomes das imagens disponíveis
 const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"];
 
 function clock(){
-    elementClock.innerHTML = ++timer;
+    clockElement.innerHTML = ++timer;
+}
+
+function startGame(){
+    deckElement.innerHTML = '';
+    pairOfCards = 0;
+    counter = 0;
+    numberOfCards = checkNumber();
+    buildGame(numberOfCards);
+    intervalTimer = setInterval(clock, 1000);
 }
 
 // monta as cartas na tela
@@ -41,7 +46,7 @@ function buildGame(num){
     // embaralha as imagens novamente
     auxImages.sort(comparador).sort(comparador);
     // para cada imagens do vertor é criado e inserido um cartão na tela
-    auxImages.forEach( img => appElement.appendChild(addCard(img)));
+    auxImages.forEach( img => deckElement.appendChild(addCard(img)));
 }
 
 // Embaralhar array a partir do sort()
@@ -87,7 +92,7 @@ function checkNumber(){
     let PairNumber;
     // repete até o retorno do prompet for par e estiver entre 3 e 15
     while(true){
-        pairNumber = parseInt(prompt('Com quantas cartas você quer jogar?'));
+        pairNumber = parseInt(prompt('Com quantas cartas você quer jogar (numeros pares de 4 a 14)?'));
         if(isPair(pairNumber)) break;
     }
 
@@ -151,6 +156,10 @@ function cardSelect(cardClicked, cardId){
         clearInterval(intervalTimer);
         setTimeout(() => {
             alert(`Você ganhou em ${counter} jogadas e em ${timer} segundos!`);
-        }, 1000);
+            if(prompt('Quer jogar novamente? [s ou n]') === 's'){
+                timer = 0;
+                startGame();
+            }
+        }, 150);
     }
 }
