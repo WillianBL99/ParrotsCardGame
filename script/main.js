@@ -12,7 +12,7 @@ let seeCard = true;
 let timer = 0;
 
 
-const clockElement = document.querySelector('.clock span');
+const clockElement = document.querySelector('.clock time');
 // Pega o conteiner onde ficarão as cartas
 const deckElement = document.querySelector(".deck_cards");
 // cria o vertor com os nomes das imagens disponíveis
@@ -58,17 +58,17 @@ function comparador() {
 /* Cria uma carta com o gif do fundo passado pelo parametro 'gif' */
 function addCard(gif){
     // cria a div principal da carta
-    const divCard = document.createElement("div");
+    const divCard = document.createElement("figure");
     divCard.setAttribute('id',`${gif}`);
     divCard.setAttribute('class', 'card');
     divCard.setAttribute('onclick', 'cardSelect(this, this.id)');
     divCard.setAttribute('data-identifier', 'card');
     // cria a parte frontal da carta
-    const front = document.createElement("div");
+    const front = document.createElement("figure");
     front.setAttribute('class', 'face front');
     front.setAttribute('data-identifier', 'front-face');
     // cria a parte de trás da carta
-    const back = document.createElement("div");
+    const back = document.createElement("figure");
     back.setAttribute('class', 'face back');
     back.setAttribute('data-identifier', 'back-face');
     

@@ -36,7 +36,7 @@ main .clock {
     min-height: 40px;
 }
 
-.clock span {
+.clock time {
     font-size: 30px;
     padding-right: 3px;
 
