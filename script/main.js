@@ -4,19 +4,16 @@ window.onload = function(){
 
 let intervalTimer;
 let numberOfCards = 0;
-let pairOfCards = 0;
-// Contador de tentativas
-let counter = 0;
-let beforParrot = {card: '', id: '' };
-let seeCard = true;
+let pairOfCards = 0; // quantidade de pares acertados
+let atteptCounter = 0;
+let beforCard = {card: '', id: '' };
+let seeNextCard = true;
 let timer = 0;
 
-
 const clockElement = document.querySelector('.clock time');
-// Pega o conteiner onde ficarão as cartas
 const deckElement = document.querySelector(".deck_cards");
-// cria o vertor com os nomes das imagens disponíveis
-const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"];
+
+const images = ["bobross","explody","fiesta","metal","revertit","triplets","unicorn"]; // nome dos gifs
 
 function clock(){
     clockElement.innerHTML = ++timer;
@@ -24,8 +21,9 @@ function clock(){
 
 function startGame(){
     deckElement.innerHTML = '';
+    clockElement.innerHTML = '0';
     pairOfCards = 0;
-    counter = 0;
+    atteptCounter = 0;
     numberOfCards = checkNumber();
     buildGame(numberOfCards);
     intervalTimer = setInterval(clock, 1000);
@@ -33,8 +31,7 @@ function startGame(){
 
 // monta as cartas na tela
 function buildGame(num){
-    // embaralha as imagens no vetor
-    images.sort(comparador);
+    images.sort(comparator);
     auxImages = [];
 
     // insere os pares de imagens no array
@@ -44,30 +41,30 @@ function buildGame(num){
     }
 
     // embaralha as cartas duas vezes
-    auxImages.sort(comparador).sort(comparador);
+    auxImages.sort(comparator).sort(comparator);
     // para cada imagens do vertor é criado e inserido um cartão na tela
     auxImages.forEach( img => deckElement.appendChild(addCard(img)));
 }
 
 // Embaralhar array a partir do sort()
-function comparador() { 
+function comparator() { 
 	return Math.random() - 0.5; 
 }
 
 
-/* Cria uma carta com o gif do fundo passado pelo parametro 'gif' */
+/* Cria uma carta com o gif de fundo passado por parametro*/
 function addCard(gif){
-    // cria a div principal da carta
+    // cria a carta
     const divCard = document.createElement("figure");
     divCard.setAttribute('id',`${gif}`);
     divCard.setAttribute('class', 'card');
     divCard.setAttribute('onclick', 'cardSelect(this, this.id)');
     divCard.setAttribute('data-identifier', 'card');
-    // cria a parte frontal da carta
+    // cria frent da carta
     const front = document.createElement("figure");
     front.setAttribute('class', 'face front');
     front.setAttribute('data-identifier', 'front-face');
-    // cria a parte de trás da carta
+    // cria fundo da carta
     const back = document.createElement("figure");
     back.setAttribute('class', 'face back');
     back.setAttribute('data-identifier', 'back-face');
@@ -90,8 +87,7 @@ function addCard(gif){
 
 // Repete até o usuário inserir um número par entre 4 e 14
 function checkNumber(){
-    let PairNumber;
-    // repete até o retorno do prompet for par e estiver entre 3 e 15
+    let pairNumber;
     while(true){
         pairNumber = parseInt(prompt('Com quantas cartas você quer jogar (numeros pares de 4 a 14)?'));
         if(isPair(pairNumber)) break;
@@ -110,53 +106,56 @@ function isPair(pairNumber){
 }
 
 
-/*  -- Implementação das função do jogo -- */
+/*  -- Implementação das funções do jogo -- */
 
 function cardSelect(cardClicked, cardId){
     const card = cardClicked;
     let frontCard = card.querySelector('.front');
     let backCard = card.querySelector('.back');
 
-    
-    if(!frontCard.classList.contains('frontClicked') && seeCard){     
-        clearTimeout();
+    //se a carta estiver virada e o setTimout não estiver contando
+    if(!frontCard.classList.contains('frontClicked') && seeNextCard){     
         
         frontCard.classList.add('frontClicked');
         backCard.classList.add('backClicked');
 
         
-        counter++;
+        atteptCounter++;
 
-        if(beforParrot['card'] === ''){
-            beforParrot['card'] = card;
-            beforParrot['id'] = cardId;
+        // Se for a primeira carta do par aberta
+        if(beforCard.card === ''){
+            beforCard.card = card;
+            beforCard.id = cardId;
 
         }
-        else if(beforParrot['id'] === cardId){
-            beforParrot['card'] = '';
-            beforParrot['id'] = '';
+        // se a segunda carta for o par
+        else if(beforCard.id === cardId){
+            beforCard.card = '';
+            beforCard.id = '';
             pairOfCards++;
         } 
+        // se a segunda carta não for o par
         else {   
-            seeCard = false;
+            seeNextCard = false;
             setTimeout(() => {
                 frontCard.classList.remove('frontClicked');
                 backCard.classList.remove('backClicked');            
-                frontCard = beforParrot['card'].querySelector('.front');
-                backCard = beforParrot['card'].querySelector('.back');
+                frontCard = beforCard.card.querySelector('.front');
+                backCard = beforCard.card.querySelector('.back');
                 frontCard.classList.remove('frontClicked');
                 backCard.classList.remove('backClicked');    
-                beforParrot['card'] = '';
-                beforParrot['id'] = ''; 
-                seeCard = true;
+                beforCard.card = '';
+                beforCard.id = ''; 
+                seeNextCard = true;
             }, 1000);     
         }
     }
 
+    // Caso tenha acertado todas as cartas
     if(numberOfCards/2 === pairOfCards){
         clearInterval(intervalTimer);
         setTimeout(() => {
-            alert(`Você ganhou em ${counter} jogadas e em ${timer} segundos!`);
+            alert(`Você ganhou em ${atteptCounter} jogadas e em ${timer} segundos!`);
             if(prompt('Quer jogar novamente? [s ou n]') === 's'){
                 timer = 0;
                 startGame();

@@ -16,8 +16,6 @@ header {
     justify-content: center;
     align-items: center;
     height: 133px;
-
-    font-family: 'Roboto', sans-serif;
     
     color: #75B79E;    
 }
@@ -38,7 +36,7 @@ main .clock {
 
 .clock time {
     font-size: 30px;
-    padding-right: 3px;
+    padding-right: 5px;
 
     color: #ca1515;
 }
@@ -48,43 +46,39 @@ main .deck_cards {
     flex-wrap: wrap;
     justify-content: center;
     
-    padding: 0 100px;
+    padding: 0 50px;
 }
 
 .card {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-     */
     min-width: 117px;
     min-height: 146px;
     width: 117px;
     height: 146px;
 
-    margin: 17px 17px;    
+    margin: 17px;    
     
-    position: relative;    
-    
-    /* background-color: #A7E9AF; */
+    position: relative;
 }
 
 .face {
-    width: 100%;
-    height: 100%;
-    background-color: #A7E9AF;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    -webkit-backface-visibility: hidden;
 
+    width: 100%;
+    height: 100%;
+    
     transition: all .5s;
     transform-style: preserve-3d;
-
+    -webkit-backface-visibility: hidden;
+    
     border-radius: 5px;
+    border-radius: 10px;
     border: 2px solid #99CEA8;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+
+    background-color: #A7E9AF;
 }
 
 .back {
