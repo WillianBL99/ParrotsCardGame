@@ -78,7 +78,7 @@ main .deck_cards {
     align-items: center;
     justify-content: center;
     position: absolute;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 
     transition: all .5s;
     transform-style: preserve-3d;
