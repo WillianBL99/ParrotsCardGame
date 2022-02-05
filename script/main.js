@@ -43,7 +43,7 @@ function buildGame(num){
         auxImages.push(images[i]);
     }
 
-    // embaralha as imagens novamente
+    // embaralha as cartas duas vezes
     auxImages.sort(comparador).sort(comparador);
     // para cada imagens do vertor é criado e inserido um cartão na tela
     auxImages.forEach( img => deckElement.appendChild(addCard(img)));
@@ -62,12 +62,15 @@ function addCard(gif){
     divCard.setAttribute('id',`${gif}`);
     divCard.setAttribute('class', 'card');
     divCard.setAttribute('onclick', 'cardSelect(this, this.id)');
+    divCard.setAttribute('data-identifier', 'card');
     // cria a parte frontal da carta
     const front = document.createElement("div");
     front.setAttribute('class', 'face front');
+    front.setAttribute('data-identifier', 'front-face');
     // cria a parte de trás da carta
     const back = document.createElement("div");
     back.setAttribute('class', 'face back');
+    back.setAttribute('data-identifier', 'back-face');
     
     const imgParrot = document.createElement("img");
     const gifParrot = document.createElement("img");
@@ -76,13 +79,11 @@ function addCard(gif){
     imgParrot.setAttribute('src', './img/front.png');
     gifParrot.setAttribute('src', `./img/${gif}parrot.gif`);
 
-    // finaliza a montagem da carta
     front.appendChild(imgParrot);
     back.appendChild(gifParrot);
     divCard.appendChild(front);
     divCard.appendChild(back);
 
-    // retorna a carta completa
     return divCard;
 }
 
