@@ -156,9 +156,12 @@ function cardSelect(cardClicked, cardId){
         clearInterval(intervalTimer);
         setTimeout(() => {
             alert(`Você ganhou em ${atteptCounter} jogadas e em ${timer} segundos!`);
-            if(prompt('Quer jogar novamente? [s ou n]') === 's'){
+            if(prompt('Quer jogar novamente? [s ou n]').toUpperCase === 'S'){
                 timer = 0;
                 startGame();
+            }
+            else {
+                alert('Show de bolinha!');
             }
         }, 150);
     }
