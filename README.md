@@ -1,4 +1,3 @@
-Um jogo da memórias com os papagaios mais insanos.
 # **projeto 4: Parrotscardgames**
 
 Esse foi um projeto com o intuito de criar um joguinho da memória com cartas. O jogo pode ser montado com a quantidade de cartas pares de 4 a 14. No fim é exibido o tempo e quantidade de tentativas para finalizar o jogo.
