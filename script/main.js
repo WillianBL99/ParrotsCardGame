@@ -31,26 +31,32 @@ function startGame(){
 
 // monta as cartas na tela
 function buildGame(num){
-    images.sort(comparator);
-    auxImages = [];
+    let shuffleImages = shuffleArray(images);
+    let auxImages = [];
 
     // insere os pares de imagens no array
     for(i = 0; i < num/2; i++){
-        auxImages.push(images[i]);
-        auxImages.push(images[i]);
+        auxImages.push(shuffleImages[i]);
+        auxImages.push(shuffleImages[i]);
     }
 
-    // embaralha as cartas duas vezes
-    auxImages.sort(comparator).sort(comparator);
+    auxImages = shuffleArray(auxImages);
     // para cada imagens do vertor é criado e inserido um cartão na tela
     auxImages.forEach( img => deckElement.appendChild(addCard(img)));
 }
 
-// Embaralhar array a partir do sort()
-function comparator() { 
-	return Math.random() - 0.5; 
-}
+// Embaralhar array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // gera índices aleatórios dentro do permitido para o 'array'
+        const j = (Math.floor((Math.random() * 10)%array.length));
 
+        const aux = array[i];
+        array[i] = array[j];
+        array[j] = aux;
+    }
+    return array;
+}
 
 /* Cria uma carta com o gif de fundo passado por parametro*/
 function addCard(gif){
