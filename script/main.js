@@ -156,7 +156,7 @@ function cardSelect(cardClicked, cardId){
         clearInterval(intervalTimer);
         setTimeout(() => {
             alert(`Você ganhou em ${atteptCounter} jogadas e em ${timer} segundos!`);
-            if(prompt('Quer jogar novamente? [s ou n]').toUpperCase === 'S'){
+            if(prompt('Quer jogar novamente? [s ou n]').toUpperCase() === 'S'){
                 timer = 0;
                 startGame();
             }
