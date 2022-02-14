@@ -24,4 +24,4 @@ A pagina está disponível no [Github Pages](https://willianbl99.github.io/proje
   
 ## **Observações**:
 
-Proxímo passo tentar simplificar mais o códico e trocar nomes de algumas variáveis, assim como funções.
+Proxímo passo modificar o layout para deixar mais responsivo para mobile.
